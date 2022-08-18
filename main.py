@@ -19,24 +19,24 @@ class Phone(Field):
 
 class AddressBook(UserDict):
 
-    def add_contact(self, name: Name, phone: Phone = None):
-        contact = Record(name=name, phone=phone)
-        self.data[name.value] = contact
+    # def add_contact(self, name: Name, phone: Phone = None):
+    #     contact = Record(name=name, phone=phone)
+    #     self.data[name.value] = contact
 
     def add_record(self, record: "Record"):
         self.data[record.name.value] = record
 
-    def find_by_name(self, name):
-        try:
-            return self.data[name]
-        except KeyError:
-            return None
-
-    def find_by_phone(self, phone: str):
-        for record in self.data.values():  # type: Record
-            if phone in [number.value for number in record.phones]:
-                return record
-        return None
+    # def find_by_name(self, name):
+    #     try:
+    #         return self.data[name]
+    #     except KeyError:
+    #         return None
+    #
+    # def find_by_phone(self, phone: str):
+    #     for record in self.data.values():  # type: Record
+    #         if phone in [number.value for number in record.phones]:
+    #             return record
+    #     return None
 
 
 class Record:
@@ -60,9 +60,12 @@ class Record:
         except ValueError:
             return f"{phone} does not exists"
 
+# book = AddressBook()
+# new_record = Record(name=Name(value="Bill"))
+# new_record.add_phone("380670000000")
+# new_record.add_phone("380671111111")
+# print(new_record.phones)
+# print(new_record.name)
+# book.add_record(new_record)
+# print(book.data)
 
-book = AddressBook()
-new_record = Record(name=Name(value="user"))
-book.add_contact(name=Name(value="user_1"), phone=Phone(value="380000"))
-book.add_record(new_record)
-book.find_by_phone("380000").phones
